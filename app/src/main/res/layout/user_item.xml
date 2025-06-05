@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="108dp">
+
+    <!-- Profile Picture (Left Side) -->
+    <ImageView
+        android:id="@+id/user_rc_pfp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_profile_placeholder"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <!-- User Info Column (Right of Profile Picture) -->
+    <TextView
+        android:id="@+id/userrc_username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="8dp"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/user_rc_pfp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Name" />
+
+    <!-- First Row: Games Count -->
+    <TextView
+        android:id="@+id/userrc_games_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:text="Games:"
+        app:layout_constraintStart_toEndOf="@id/user_rc_pfp"
+        app:layout_constraintTop_toBottomOf="@id/userrc_username" />
+
+    <TextView
+        android:id="@+id/userrc_games"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/userrc_games_lbl"
+        app:layout_constraintStart_toEndOf="@id/userrc_games_lbl"
+        tools:text="10" />
+
+    <!-- Second Row: Rating -->
+    <TextView
+        android:id="@+id/userrc_ratings_lbl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        android:text="Rating:"
+        app:layout_constraintStart_toEndOf="@id/user_rc_pfp"
+        app:layout_constraintTop_toBottomOf="@id/userrc_games_lbl" />
+
+    <TextView
+        android:id="@+id/userrc_ratings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/userrc_ratings_lbl"
+        app:layout_constraintStart_toEndOf="@id/userrc_ratings_lbl"
+        tools:text="10" />
+
+    <!-- Third Row: Phone -->
+    <TextView
+        android:id="@+id/userrc_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@id/user_rc_pfp"
+        app:layout_constraintTop_toBottomOf="@id/userrc_ratings_lbl"
+        tools:text="123-456-7890" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="?android:attr/listDivider" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="4dp"
+        android:text="Bio:"
+        app:layout_constraintStart_toEndOf="@+id/userrc_games_lbl"
+        app:layout_constraintTop_toBottomOf="@+id/userrc_username" />
+
+    <TextView
+        android:id="@+id/userrc_bio"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="12dp"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toTopOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.0" />
+    <!-- Add this at the end of your original ConstraintLayout -->
+    <!-- Send to back -->
+
+    <!-- Then add android:background="@android:color/white" to your root ConstraintLayout -->
+</androidx.constraintlayout.widget.ConstraintLayout>

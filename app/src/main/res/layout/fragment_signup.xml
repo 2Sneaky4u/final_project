@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2A3F5A"
+    android:elevation="8dp"
+    android:padding="64dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHeight_percent="0.85"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintWidth_percent="0.95">
+
+
+    <!-- Username Field -->
+    <TextView
+        android:id="@+id/username_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Username"
+        android:textColor="#66C0F4"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/signUsernameEditText"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@drawable/steam_field_background"
+        android:hint="Enter your username"
+        android:imeOptions="actionNext"
+        android:maxLength="20"
+        android:padding="12dp"
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#8F98A0"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/username_label" />
+
+    <!-- Password Field -->
+    <TextView
+        android:id="@+id/password_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Password"
+        android:textColor="#66C0F4"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signUsernameEditText" />
+
+    <EditText
+        android:id="@+id/confirm_signPasswordEditText"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@drawable/steam_field_background"
+        android:hint="Enter your password"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#8F98A0"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/confirm_password_label" />
+
+    <TextView
+        android:id="@+id/confirm_password_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Confirm password"
+        android:textColor="#66C0F4"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/signPasswordEditText" />
+
+    <EditText
+        android:id="@+id/signPasswordEditText"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:background="@drawable/steam_field_background"
+        android:hint="Enter your password"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:singleLine="true"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#8F98A0"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password_label" />
+
+    <!-- Remember Me -->
+
+    <!-- Login Button -->
+    <Button
+        android:id="@+id/signupButton"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:background="@drawable/steam_button_background"
+        android:text="Sign Up"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signPasswordEditText" />
+
+    <TextView
+        android:id="@+id/gotologin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="Already have an acount?"
+        android:textColor="#66C0F4"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/signupButton"
+        app:layout_constraintTop_toBottomOf="@+id/signupButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

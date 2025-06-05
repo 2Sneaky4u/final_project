@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/editGame"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditUserActivity">
+
+    <TextView
+        android:id="@+id/gameNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="Name:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/gameNameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gameNameTextView"
+        app:layout_constraintStart_toEndOf="@+id/gameNameTextView"
+        app:layout_constraintTop_toTopOf="@+id/gameNameTextView" />
+
+    <TextView
+        android:id="@+id/gameGenreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Genre:"
+        app:layout_constraintEnd_toEndOf="@+id/gameNameTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/gameNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/gameNameTextView" />
+
+    <TextView
+        android:id="@+id/gameGenreView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gameGenreTextView"
+        app:layout_constraintStart_toEndOf="@+id/gameGenreTextView"
+        app:layout_constraintTop_toTopOf="@+id/gameGenreTextView" />
+
+    <TextView
+        android:id="@+id/gameRatingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Rating:"
+        app:layout_constraintEnd_toEndOf="@+id/gameGenreTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/gameGenreTextView"
+        app:layout_constraintTop_toBottomOf="@+id/gameGenreTextView" />
+
+    <TextView
+        android:id="@+id/gameReviewTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:gravity="fill"
+        android:text="Review:"
+        app:layout_constraintEnd_toEndOf="@+id/gameStatusTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/gameStatusTextView"
+        app:layout_constraintTop_toBottomOf="@+id/gameStatusTextView" />
+
+    <TextView
+        android:id="@+id/gameReviewView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:ellipsize="end"
+        android:maxEms="25"
+        app:layout_constraintBottom_toBottomOf="@+id/gameReviewTextView"
+        app:layout_constraintEnd_toEndOf="@+id/gtextInputLayout4"
+        app:layout_constraintStart_toEndOf="@+id/gameReviewTextView"
+        app:layout_constraintTop_toTopOf="@+id/gameReviewTextView" />
+
+    <TextView
+        android:id="@+id/gameStatusTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Completion status:"
+        app:layout_constraintEnd_toEndOf="@+id/gameRatingTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/gameRatingTextView"
+        app:layout_constraintTop_toBottomOf="@+id/gameRatingTextView" />
+
+    <TextView
+        android:id="@+id/gameStatusView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gameStatusTextView"
+        app:layout_constraintStart_toEndOf="@+id/gameStatusTextView"
+        app:layout_constraintTop_toTopOf="@+id/gameStatusTextView"
+        tools:text="100" />
+
+    <TextView
+        android:id="@+id/gameRatingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/gameRatingTextView"
+        app:layout_constraintStart_toEndOf="@+id/gameRatingTextView"
+        app:layout_constraintTop_toTopOf="@+id/gameRatingTextView"
+        tools:text="10" />
+
+    <Button
+        android:id="@+id/editGameinfoBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="Edit Info"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/saveGameEditsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/editGameinfoBtn"
+        app:layout_constraintEnd_toEndOf="@+id/editGameinfoBtn"
+        app:layout_constraintStart_toStartOf="@+id/editGameinfoBtn"
+        app:layout_constraintTop_toTopOf="@+id/editGameinfoBtn" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/gtextInputLayout"
+        android:layout_width="250dp"
+        android:layout_height="61dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/gameGenreTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/gameNameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/gameNameTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text|textPersonName"
+            android:maxLength="20"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/gtextInputLayout2"
+        android:layout_width="250dp"
+        android:layout_height="61dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/gameRatingTextView"
+        app:layout_constraintEnd_toEndOf="@+id/gtextInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/gtextInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/gameGenreTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newGenreText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text|textPersonName"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/gtextInputLayout3"
+        android:layout_width="250dp"
+        android:layout_height="61dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/gameReviewTextView"
+        app:layout_constraintEnd_toEndOf="@+id/gtextInputLayout2"
+        app:layout_constraintStart_toStartOf="@+id/gtextInputLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/gameStatusTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newStatusText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="3"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/gtextInputLayout4"
+        android:layout_width="250dp"
+        android:layout_height="180dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/gtextInputLayout3"
+        app:layout_constraintStart_toStartOf="@+id/gtextInputLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/gameReviewTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newReviewText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text|textLongMessage|textMultiLine"
+            android:maxEms="25"
+            android:singleLine="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/warningTextg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="if u dont want to change something,\n leave the field empty"
+        android:textColor="@color/design_default_color_error"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/editGameinfoBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editGameinfoBtn"
+        app:layout_constraintTop_toTopOf="@+id/editGameinfoBtn" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/10"
+        app:layout_constraintBottom_toBottomOf="@+id/gameRatingView"
+        app:layout_constraintStart_toEndOf="@+id/gameRatingView"
+        app:layout_constraintTop_toTopOf="@+id/gameRatingView" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/gtextInputLayout5"
+        android:layout_width="250dp"
+        android:layout_height="61dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/gameStatusTextView"
+        app:layout_constraintEnd_toEndOf="@+id/gtextInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/gtextInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/gameRatingTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newRatingText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="%"
+        app:layout_constraintBottom_toBottomOf="@+id/gameStatusView"
+        app:layout_constraintStart_toEndOf="@+id/gameStatusView"
+        app:layout_constraintTop_toTopOf="@+id/gameStatusView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/editUser"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditUserActivity">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/profilePreview"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:focusable="true"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toEndOf="@+id/myProfilePicTextView"
+        app:layout_constraintTop_toTopOf="@+id/myProfilePicTextView"
+        app:srcCompat="@android:drawable/ic_menu_upload" />
+
+    <TextView
+        android:id="@+id/myUsernameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="Username:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/myUsernameView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/myUsernameTextView"
+        app:layout_constraintStart_toEndOf="@+id/myUsernameTextView"
+        app:layout_constraintTop_toTopOf="@+id/myUsernameTextView" />
+
+    <TextView
+        android:id="@+id/myPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Password:"
+        app:layout_constraintEnd_toEndOf="@+id/myUsernameTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/myUsernameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/myUsernameTextView" />
+
+    <TextView
+        android:id="@+id/myPasswordView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/myPasswordTextView"
+        app:layout_constraintStart_toEndOf="@+id/myPasswordTextView"
+        app:layout_constraintTop_toTopOf="@+id/myPasswordTextView" />
+
+    <TextView
+        android:id="@+id/myProfilePicTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="Profile Picture"
+        app:layout_constraintEnd_toEndOf="@+id/myPasswordTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/myPasswordTextView"
+        app:layout_constraintTop_toBottomOf="@+id/myPasswordTextView" />
+
+    <TextView
+        android:id="@+id/myBioTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:gravity="fill"
+        android:text="User description: "
+        app:layout_constraintEnd_toEndOf="@+id/myPhoneTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/myPhoneTextView"
+        app:layout_constraintTop_toBottomOf="@+id/myPhoneTextView" />
+
+    <TextView
+        android:id="@+id/myBioView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="@+id/myBioTextView"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
+        app:layout_constraintStart_toEndOf="@+id/myBioTextView"
+        app:layout_constraintTop_toTopOf="@+id/myBioTextView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/myPhoneTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Phone number:"
+        app:layout_constraintEnd_toEndOf="@+id/myProfilePicTextView"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/myProfilePicTextView"
+        app:layout_constraintTop_toBottomOf="@+id/profilePreview" />
+
+    <TextView
+        android:id="@+id/myPhoneView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/myPhoneTextView"
+        app:layout_constraintStart_toEndOf="@+id/myPhoneTextView"
+        app:layout_constraintTop_toTopOf="@+id/myPhoneTextView" />
+
+    <Button
+        android:id="@+id/editUserinfoBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="Edit User"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/saveEditsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/editUserinfoBtn"
+        app:layout_constraintEnd_toEndOf="@+id/editUserinfoBtn"
+        app:layout_constraintStart_toStartOf="@+id/editUserinfoBtn"
+        app:layout_constraintTop_toTopOf="@+id/editUserinfoBtn" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="250dp"
+        android:layout_height="61dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/myPasswordTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/myUsernameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/myUsernameTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newUsernameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="New username"
+            android:inputType="text|textPersonName"
+            android:maxLength="20"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        android:layout_width="250dp"
+        android:layout_height="61dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/myProfilePicTextView"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/myPasswordTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newPasswordText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="New password"
+            android:inputType="text|textPassword"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
+        android:layout_width="250dp"
+        android:layout_height="61dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/myBioTextView"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/myPhoneTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newPhoneText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="New phone number"
+            android:inputType="phone"
+            android:maxLength="10"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout4"
+        android:layout_width="250dp"
+        android:layout_height="180dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/myBioTextView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newDescText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="New BIO"
+            android:inputType="text|textLongMessage|textMultiLine"
+            android:maxEms="25"
+            android:singleLine="false" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/warningText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="if u dont want to change something,\n leave the field empty"
+        android:textColor="@color/design_default_color_error"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/editUserinfoBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editUserinfoBtn"
+        app:layout_constraintTop_toTopOf="@+id/editUserinfoBtn"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/leavebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:text="Go Back"
+        app:layout_constraintBottom_toBottomOf="@+id/editUserinfoBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editUserinfoBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/white"
+    tools:context=".AbtMeActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <!-- Profile Image -->
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="24dp"
+            android:contentDescription="@string/profile_image_desc"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_profile_placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/circle_background"
+            android:padding="4dp"/>
+
+        <!-- Name -->
+        <TextView
+            android:id="@+id/name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/creator_name"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_image" />
+
+        <!-- Title -->
+
+        <!-- Bio Section -->
+        <TextView
+            android:id="@+id/section_bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="82dp"
+            android:text="@string/bio_section"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/name_text"
+            app:layout_constraintStart_toStartOf="@+id/name_text"
+            app:layout_constraintTop_toBottomOf="@+id/name_text" />
+
+        <TextView
+            android:id="@+id/bio_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="A lot of bullshit about me"
+            android:textColor="@color/gray_700"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/section_bio"
+            app:layout_constraintStart_toStartOf="@+id/section_bio"
+            app:layout_constraintTop_toBottomOf="@id/section_bio" />
+
+        <!-- Contact Section -->
+        <TextView
+            android:id="@+id/section_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/contact_section"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/section_bio"
+            app:layout_constraintStart_toStartOf="@+id/section_bio"
+            app:layout_constraintTop_toBottomOf="@id/bio_text" />
+
+        <!-- Email -->
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/section_bio"
+            app:layout_constraintStart_toStartOf="@+id/section_bio"
+            app:layout_constraintTop_toBottomOf="@id/section_contact">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="12dp"
+                android:src="@android:drawable/ic_dialog_email"
+                app:tint="@color/primary" />
+
+            <TextView
+                android:id="@+id/email_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/creator_email"
+                android:textColor="@color/gray_700"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/name_text"
+            app:layout_constraintEnd_toStartOf="@+id/name_text"
+            app:layout_constraintTop_toTopOf="@+id/name_text"
+            app:srcCompat="@android:drawable/ic_dialog_info" />
+
+        <!-- Website -->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

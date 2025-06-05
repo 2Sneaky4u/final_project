@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="108dp">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="?android:attr/listDivider" />
+
+    <TextView
+        android:id="@+id/gameName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/gameRatingTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Rating:"
+        app:layout_constraintBottom_toTopOf="@+id/gameName"
+        app:layout_constraintStart_toEndOf="@+id/gameName"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/gameCompletionTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/gameRatingTxt"
+        app:layout_constraintStart_toStartOf="@+id/gameRatingTxt"
+        app:layout_constraintTop_toBottomOf="@+id/gameName" />
+
+    <TextView
+        android:id="@+id/gameGenre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Genre"
+        app:layout_constraintBottom_toTopOf="@+id/gameCompletionTxt"
+        app:layout_constraintEnd_toEndOf="@+id/gameRating"
+        app:layout_constraintStart_toStartOf="@+id/gameRatingTxt"
+        app:layout_constraintTop_toBottomOf="@+id/gameRatingTxt" />
+
+    <TextView
+        android:id="@+id/gameRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="10/10"
+        app:layout_constraintBottom_toBottomOf="@+id/gameRatingTxt"
+        app:layout_constraintStart_toEndOf="@+id/gameRatingTxt"
+        app:layout_constraintTop_toTopOf="@+id/gameRatingTxt" />
+
+    <TextView
+        android:id="@+id/gameCompletion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="100%"
+        app:layout_constraintBottom_toBottomOf="@+id/gameCompletionTxt"
+        app:layout_constraintStart_toEndOf="@+id/gameCompletionTxt"
+        app:layout_constraintTop_toTopOf="@+id/gameCompletionTxt" />
+
+    <TextView
+        android:id="@+id/gameReviewTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Review:"
+        app:layout_constraintBottom_toTopOf="@+id/gameCompletion"
+        app:layout_constraintStart_toEndOf="@+id/gameRating"
+        app:layout_constraintTop_toBottomOf="@+id/gameRating" />
+
+    <TextView
+        android:id="@+id/gameReview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/gameReviewTxt"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
