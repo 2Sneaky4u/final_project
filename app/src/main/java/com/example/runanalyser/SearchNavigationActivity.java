@@ -80,10 +80,13 @@ public class SearchNavigationActivity extends AppCompatActivity {
                     System.out.println("--> userpage btn clicked");
                     switchFragToUserpage();
                 } else if (itemId == R.id.abtmepage) {
-                    System.out.println("--> dead btn 2 clicked");
-//                    intent = new Intent(activity, UserProfileActivity.class);
-//                    activity.startActivity(intent);
-//                    activity.finish();
+                    System.out.println("--> about me btn clicked");
+                    intent = new Intent(SearchNavigationActivity.this, AbtMeActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else if (itemId == R.id.logoutBtn) {
+                    System.out.println("--> logout btn clicked");
+                    Globals.logOut(SearchNavigationActivity.this);
                 }
                 return false;
             }
@@ -95,12 +98,13 @@ public class SearchNavigationActivity extends AppCompatActivity {
         transaction.replace(R.id.fragmentContainerView3, usersPageFragment, "Users Search");
         transaction.commit();
     }
+
     public void switchFragToNewUserProfile(OtherUserProfileFragment usersProfileFragment) {
-        System.out.println("---> clicked a user" );
+        System.out.println("---> clicked a user");
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragmentContainerView3, usersProfileFragment, "New User Profile");
-        System.out.println("---> replaced transaction" );
+        System.out.println("---> replaced transaction");
         transaction.commit();
-        System.out.println("---> commited transaction" );
+        System.out.println("---> commited transaction");
     }
 }

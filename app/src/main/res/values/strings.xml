@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Run Analyser</string>
+    <string name="app_name">Game Social</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -23,7 +23,6 @@
     <string name="creator_name">Guy Spialter</string>
     <string name="creator_title">Android Developer and Designer</string>
     <string name="bio_section">About Me</string>
-    <string name="creator_bio">Passionate Android developer with 5+ years of experience creating beautiful and functional mobile applications. I specialize in Kotlin, Jetpack Compose, and clean architecture. When I\'m not coding, you can find me hiking or reading sci-fi novels.</string>
     <string name="contact_section">Contact</string>
     <string name="creator_email">notputingmyemail@example.fake</string>
     <string name="creator_website">janedev.com</string>

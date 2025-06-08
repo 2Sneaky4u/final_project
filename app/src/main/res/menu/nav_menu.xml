@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <menu xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/userspage"
         android:enabled="true"
-        android:icon="@android:drawable/stat_notify_chat"
+        android:icon="@drawable/ic_profile_placeholder"
         android:title="Users"
+        android:titleCondensed="bout"
         android:visible="true" />
     <!--            android:icon="@drawable/baseline_restaurant_menu_24"-->
 
     <!--            android:icon="@drawable/baseline_local_airport_24"-->
 
     <item
+        android:id="@+id/logoutBtn"
+        android:icon="@drawable/ic_logout"
+        android:title="Logout" />
+    <item
         android:id="@+id/abtmepage"
         android:enabled="true"
+        android:icon="@drawable/ic_about_me"
         android:title="About the creator"
         android:visible="true" />
     <!--            android:icon="@drawable/baseline_airport_shuttle_24"-->
