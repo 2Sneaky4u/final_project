@@ -1,5 +1,6 @@
 package com.example.runanalyser.fragments;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
@@ -84,7 +86,23 @@ public class GameRCFragment extends Fragment {
                         if (direction == ItemTouchHelper.LEFT) {
                             List<Game> gameList = gameAdapter.getCurrentList();
                             Game destGame = gameList.get(viewHolder.getAdapterPosition());
-                            gameDao.delGame(destGame);
+                            final CharSequence[] options = {"Are you sure you want to delete this game?\nThis cannot be undone.", "Delete", "Cancel"};
+                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            builder.setTitle("Delete Game?");
+                            builder.setItems(options, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (options[which].equals("Delete")) {
+                                        AppDatabase.dtbWriteExecutor.execute(() -> {
+                                            gameDao.delGame(destGame);
+                                        });
+                                    } else if (options[which].equals("Cancel")) {
+                                        dialog.dismiss();
+                                    } else if (which == 1) {
+                                    }
+                                }
+                            });
+                            getActivity().runOnUiThread(()->builder.show());
                         }
                     }
                 });

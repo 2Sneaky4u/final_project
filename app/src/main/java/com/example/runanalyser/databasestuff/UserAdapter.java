@@ -1,6 +1,8 @@
 package com.example.runanalyser.databasestuff;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.runanalyser.Globals;
 import com.example.runanalyser.R;
 
 import java.util.List;
@@ -61,6 +64,8 @@ public class UserAdapter extends ListAdapter<User, UserAdapter.UserViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull UserAdapter.UserViewHolder holder, int position) {
         UserDao userDao = AppDatabase.getDatabase(context).userDao();
+        FollowerDao followerDao = AppDatabase.getDatabase(context).followerDao();
+
         User user = users.get(position);
         holder.nameView.setText(user.username);
         holder.phoneView.setText(user.phonenumber);
@@ -75,6 +80,55 @@ public class UserAdapter extends ListAdapter<User, UserAdapter.UserViewHolder> {
             });
         }).start();
         if (user.pfpURI != null) holder.pfpView.setImageURI(Uri.parse(user.pfpURI));
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("--> Entered edit thread");
+                boolean isFollowing = followerDao.getFollowItemByIds(Globals.getCurUser().id, user.id) != null;
+                boolean isFollowed = followerDao.getFollowItemByIds(user.id, Globals.getCurUser().id) != null;
+                System.out.println("--> got follow info");
+                ((Activity) context).runOnUiThread(() -> {
+                    System.out.println("--> entered UI thread");
+                    updateButtonStates(user,holder,isFollowing,isFollowed);
+                    System.out.println("--> Finished UI thread");
+                });
+            }
+        };
+
+        AppDatabase.dtbWriteExecutor.execute(runnable);
+
+
+
+        holder.followbtn.setOnClickListener(view ->AppDatabase.dtbWriteExecutor.execute(() -> {
+            Follower follower = new Follower(Globals.getCurUser().id, user.id);
+            followerDao.insertFollower(follower);
+            System.out.println("--> added follow");
+            AppDatabase.dtbWriteExecutor.execute(runnable);
+        }));
+        holder.unfollowbtn.setOnClickListener(view ->AppDatabase.dtbWriteExecutor.execute(() -> {
+            Follower follower = followerDao.getFollowItemByIds(Globals.getCurUser().id, user.id);
+            followerDao.delFollower(follower);
+            System.out.println("--> added follow");
+            AppDatabase.dtbWriteExecutor.execute(runnable);
+
+        }));
+    }
+
+    private void updateButtonStates(User user, UserAdapter.UserViewHolder holder, boolean isFollowing, boolean isFollowed) {
+        holder.followbtn.setVisibility(isFollowing ? View.INVISIBLE : View.VISIBLE);
+        holder.unfollowbtn.setVisibility(isFollowing ? View.VISIBLE : View.INVISIBLE);
+
+        holder.followbtn.setClickable(!isFollowing);
+        holder.unfollowbtn.setClickable(isFollowing);
+
+        if (isFollowing && isFollowed) {
+            holder.nameView.setText(user.username + " * Friend");
+        } else if (isFollowing) {
+            holder.nameView.setText(user.username + " * Following");
+        } else {
+            holder.nameView.setText(user.username);
+        }
     }
 
     @Override
@@ -99,6 +153,8 @@ public class UserAdapter extends ListAdapter<User, UserAdapter.UserViewHolder> {
         TextView phoneView;
         TextView bioView;
         ImageView pfpView;
+        ImageView followbtn;
+        ImageView unfollowbtn;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -110,6 +166,8 @@ public class UserAdapter extends ListAdapter<User, UserAdapter.UserViewHolder> {
             phoneView = itemView.findViewById(R.id.userrc_phone);
             bioView = itemView.findViewById(R.id.userrc_bio);
             pfpView = itemView.findViewById(R.id.user_rc_pfp);
+            followbtn = itemView.findViewById(R.id.followBtn);
+            unfollowbtn = itemView.findViewById(R.id.unfollowBtn);
         }
     }
 

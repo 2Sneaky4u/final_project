@@ -60,22 +60,4 @@
         app:layout_constraintVertical_bias="1.0"
         tools:text="99" />
 
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:splitTrack="false"
-        android:text="Users"
-        app:layout_constraintBottom_toBottomOf="@+id/textView11"
-        app:layout_constraintEnd_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="@+id/textView11" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
-        android:text="Rating"
-        app:layout_constraintBottom_toTopOf="@+id/gameSearchBar"
-        app:layout_constraintEnd_toEndOf="@+id/gameSearchBar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

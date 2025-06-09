@@ -6,6 +6,7 @@
     android:layout_height="108dp">
 
     <!-- Profile Picture (Left Side) -->
+
     <ImageView
         android:id="@+id/user_rc_pfp"
         android:layout_width="80dp"
@@ -109,15 +110,38 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="4dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="12dp"
         android:ellipsize="end"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/followBtn"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toTopOf="@+id/textView10"
         app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/followBtn"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="false"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userrc_username"
+        app:srcCompat="@android:drawable/ic_input_add" />
+
+    <ImageView
+        android:id="@+id/unfollowBtn"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="false"
+        android:rotation="45"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userrc_username"
+        app:srcCompat="@android:drawable/ic_delete"
+        tools:visibility="invisible" />
 
     <!-- Add this at the end of your original ConstraintLayout -->
     <!-- Send to back -->

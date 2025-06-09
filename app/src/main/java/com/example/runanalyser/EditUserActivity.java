@@ -29,6 +29,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.runanalyser.databasestuff.AppDatabase;
 import com.example.runanalyser.databasestuff.User;
 import com.example.runanalyser.databasestuff.UserDao;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.File;
@@ -59,6 +60,7 @@ public class EditUserActivity extends AppCompatActivity {
     private Button editUser;
     private Button saveEdits;
     private Button exitbtn;
+    private FloatingActionButton delUser;
     private ActivityResultLauncher<String> requestPermissionLauncher = registerForActivityResult(new ActivityResultContracts.RequestPermission(), new ActivityResultCallback<Boolean>() {
         @Override
         public void onActivityResult(Boolean result) {
@@ -180,6 +182,7 @@ public class EditUserActivity extends AppCompatActivity {
         DescriptionTxt = findViewById(R.id.myBioView);
         PhoneTxt = findViewById(R.id.myPhoneView);
         exitbtn = findViewById(R.id.leavebtn);
+        delUser = findViewById(R.id.deleteUserFAB);
 
         visibilityViews.add(findViewById(R.id.textInputLayout));
         visibilityViews.add(findViewById(R.id.textInputLayout2));
@@ -205,7 +208,7 @@ public class EditUserActivity extends AppCompatActivity {
                 editDesc.setVisibility(View.VISIBLE);
                 saveEdits.setVisibility(View.VISIBLE);
                 previewProfilePic.setClickable(true);
-                exitbtn.setClickable(false);
+                exitbtn.setVisibility(View.INVISIBLE);
                 editUser.setVisibility(View.INVISIBLE);
             }
         });
@@ -249,7 +252,7 @@ public class EditUserActivity extends AppCompatActivity {
                 editDesc.setVisibility(View.INVISIBLE);
                 saveEdits.setVisibility(View.INVISIBLE);
                 previewProfilePic.setClickable(false);
-                exitbtn.setClickable(true);
+                exitbtn.setVisibility(View.VISIBLE);
                 editUser.setVisibility(View.VISIBLE);
                 refreshUserInfo();
             }
@@ -289,9 +292,32 @@ public class EditUserActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        delUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final CharSequence[] options = {"Are you sure you want to delete your user?\n This cannot be undone.", "Delete", "Cancel"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditUserActivity.this);
+                builder.setTitle("Delete User?");
+                builder.setItems(options, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (options[which].equals("Delete")) {
+                            AppDatabase.dtbWriteExecutor.execute(()->{
+                                userDao.delUser(Globals.getCurUser());
+                                Globals.logOut(EditUserActivity.this);
+                            });
+                        } else if (options[which].equals("Cancel")) {
+                            dialog.dismiss();
+                        }else if (which == 1) {
+                        }
+                    }
+                });
+                builder.show();
+            }
+        });
+
         refreshUserInfo();
-
-
     }
 
     private void showToast(String message) {

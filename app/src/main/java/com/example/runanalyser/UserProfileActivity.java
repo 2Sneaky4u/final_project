@@ -15,7 +15,9 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.runanalyser.databasestuff.AppDatabase;
 import com.example.runanalyser.fragments.GameRCFragment;
+import com.example.runanalyser.fragments.UsersPageFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
@@ -25,6 +27,10 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextView curName;
     private FloatingActionButton addgameFab;
     private FloatingActionButton searchFab;
+
+    AppDatabase database;
+    private TextView followers;
+    private TextView following;
     private final GameRCFragment myGamesFrag = new GameRCFragment(Globals.getCurUser());
     private final FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -39,16 +45,28 @@ public class UserProfileActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragmentContainerView2, myGamesFrag, "Your games");
-        transaction.commit();
+        switchFragToGamesPage();
+
+        database = AppDatabase.getDatabase(this);
 
         searchFab = findViewById(R.id.searchFAB);
         addgameFab = findViewById(R.id.addGameFAB);
         editUserBtn = findViewById(R.id.profileBtn);
         curName = findViewById(R.id.curusername);
+        followers = findViewById(R.id.followerCountTxt);
+        following = findViewById(R.id.followingCountTxt);
+
         System.out.println("---> " + this + " <---> " + Globals.getCurUser());
         System.out.println("---> " + this + " <---> " + Globals.getCurUser().username);
+
+        new Thread(() -> {
+            int ercount = database.followerDao().countFollowers(Globals.getCurUser().id);
+            int ngcount = database.followerDao().countFollowing(Globals.getCurUser().id);
+            runOnUiThread(() -> {
+                followers.setText(String.valueOf(ercount));
+                following.setText(String.valueOf(ngcount));
+            });
+        }).start();
         curName.setText(Globals.getCurUser().username);
         if (Globals.getCurUser().pfpURI != null)
             editUserBtn.setImageURI(Uri.parse(Globals.getCurUser().pfpURI));
@@ -72,8 +90,30 @@ public class UserProfileActivity extends AppCompatActivity {
         searchFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(UserProfileActivity.this, SearchNavigationActivity.class    ));
+                startActivity(new Intent(UserProfileActivity.this, SearchNavigationActivity.class));
             }
         });
+
+//        followers.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(UserProfileActivity.this, SearchNavigationActivity.class);
+//                i.putExtra(Globals.NAV_OPENING, 1);
+//                startActivity(i);            }
+//        });
+//        following.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent i = new Intent(UserProfileActivity.this, SearchNavigationActivity.class);
+//                i.putExtra(Globals.NAV_OPENING, 2);
+//                startActivity(i);
+//            }
+//        });
+
+    }
+    public void switchFragToGamesPage() {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.fragmentContainerView2, myGamesFrag, "Your games");
+        transaction.commit();
     }
 }

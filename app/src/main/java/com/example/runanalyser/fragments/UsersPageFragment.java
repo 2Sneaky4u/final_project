@@ -16,6 +16,7 @@ import androidx.lifecycle.MediatorLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.runanalyser.Globals;
 import com.example.runanalyser.R;
 import com.example.runanalyser.SearchNavigationActivity;
 import com.example.runanalyser.databasestuff.AppDatabase;
@@ -52,7 +53,7 @@ public class UsersPageFragment extends Fragment {
         }).start();
 
         // Initialize adapter
-        userAdapter = new UserAdapter(new ArrayList<>(), requireContext(), new UserAdapter.OnUserClickListener() {
+        userAdapter = new UserAdapter(new ArrayList<>(), getActivity(), new UserAdapter.OnUserClickListener() {
             @Override
             public void onUserClick(User user) {
                 SearchNavigationActivity nav = (SearchNavigationActivity) getActivity();
@@ -78,7 +79,7 @@ public class UsersPageFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 usersLiveData.removeSource(currentUsersData);
-                currentUsersData = userDao.getUsersListByName(editable.toString());
+                currentUsersData = userDao.getUsersListByNameExCur(editable.toString(), Globals.getCurUser().id);
                 usersLiveData.addSource(currentUsersData, users -> usersLiveData.setValue(users));
             }
         });
@@ -86,7 +87,7 @@ public class UsersPageFragment extends Fragment {
         // LiveData observation
         usersLiveData.observe(getViewLifecycleOwner(), users -> userAdapter.setUsers(users));
 
-        currentUsersData = userDao.getUsersListByName("");
+        currentUsersData = userDao.getUsersListByNameExCur("", Globals.getCurUser().id);
         usersLiveData.addSource(currentUsersData, users -> usersLiveData.setValue(users));
     }
 

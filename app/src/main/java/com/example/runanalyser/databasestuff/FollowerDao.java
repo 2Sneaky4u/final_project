@@ -12,7 +12,7 @@ import java.util.List;
 @Dao
 public interface FollowerDao {
     @Insert
-    long insertFollower(Follower follower);
+    void insertFollower(Follower follower);
 
     @Update
     void editFollower(Follower follower);
@@ -26,6 +26,7 @@ public interface FollowerDao {
             "WHERE followers.followerId = :id\n" +
             "ORDER BY users.username ASC")
     LiveData<List<User>> getFollowingListById(int id);
+
     @Query("SELECT count(*)\n" +
             "FROM Users\n" +
             "JOIN Followers ON Users.userId = Followers.followingId\n" +
@@ -38,10 +39,17 @@ public interface FollowerDao {
             "WHERE followers.followingId = :id\n" +
             "ORDER BY users.username ASC")
     LiveData<List<User>> getFollowerListById(int id);
+
     @Query("SELECT count(*)\n" +
             "FROM Users\n" +
             "JOIN Followers ON Users.userId = Followers.followerId\n" +
             "WHERE Followers.followingId = :id")
     int countFollowers(int id);
+
+    @Query("SELECT * \n" +
+            "FROM Followers \n" +
+            "WHERE followerId = :followerUserId \n" +
+            "AND followingId = :targetUserId")
+    Follower getFollowItemByIds(int followerUserId, int targetUserId);
 
 }

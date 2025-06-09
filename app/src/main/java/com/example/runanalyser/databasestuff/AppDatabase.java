@@ -12,7 +12,11 @@ import java.util.concurrent.Executors;
 @Database(entities = {User.class, Game.class, Follower.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
+
     public abstract GameDao gameDao();
+
+    public abstract FollowerDao followerDao();
+
     private static final int NUM_OF_THREADS = 4;
 
     public static final ExecutorService dtbWriteExecutor = Executors.newFixedThreadPool(NUM_OF_THREADS);

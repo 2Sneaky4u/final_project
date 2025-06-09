@@ -14,8 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.runanalyser.Globals;
 import com.example.runanalyser.R;
 import com.example.runanalyser.SearchNavigationActivity;
+import com.example.runanalyser.databasestuff.AppDatabase;
 import com.example.runanalyser.databasestuff.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -26,6 +28,9 @@ public class OtherUserProfileFragment extends Fragment {
     private FloatingActionButton exitFab;
     private GameRCFragment myGamesFrag;
     private User user;
+    private AppDatabase database;
+    private TextView followers;
+    private TextView following;
 
     public OtherUserProfileFragment() {
         SearchNavigationActivity nav = (SearchNavigationActivity) getActivity();
@@ -47,11 +52,14 @@ public class OtherUserProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        database = AppDatabase.getDatabase(getActivity());
 
         // Initialize views
         userPfp = view.findViewById(R.id.profileBtn2);
         curName = view.findViewById(R.id.curusername2);
         exitFab = view.findViewById(R.id.closeFragFAB);
+        followers = view.findViewById(R.id.followerCountTxt2);
+        following = view.findViewById(R.id.followingCountTxt2);
 
         if (user != null) {
             displayUserProfile(user);
@@ -73,6 +81,15 @@ public class OtherUserProfileFragment extends Fragment {
         if (user.pfpURI != null) {
             userPfp.setImageURI(Uri.parse(user.pfpURI));
         }
+
+        new Thread(() -> {
+            int ercount = database.followerDao().countFollowers(user.id);
+            int ngcount = database.followerDao().countFollowing(user.id);
+            getActivity().runOnUiThread(() -> {
+                followers.setText(String.valueOf(ercount));
+                following.setText(String.valueOf(ngcount));
+            });
+        }).start();
 
         // Setup games fragment
         myGamesFrag = new GameRCFragment(user);

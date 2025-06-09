@@ -7,6 +7,53 @@
     android:layout_height="match_parent"
     tools:context=".fragments.OtherUserProfileFragment">
 
+    <TextView
+        android:id="@+id/followingCount2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Following"
+        android:textColor="@color/gray_700"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/followerCount2"
+        app:layout_constraintStart_toEndOf="@+id/followerCount2"
+        app:layout_constraintTop_toBottomOf="@+id/followerCountTxt2" />
+
+    <TextView
+        android:id="@+id/followerCount2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Followers"
+        android:textColor="@color/gray_700"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@+id/curusername2"
+        app:layout_constraintTop_toBottomOf="@+id/curusername2" />
+
+    <TextView
+        android:id="@+id/followerCountTxt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="0"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/followerCount2"
+        app:layout_constraintEnd_toEndOf="@+id/followerCount2"
+        app:layout_constraintStart_toStartOf="@+id/followerCount2"
+        tools:text="99" />
+
+    <TextView
+        android:id="@+id/followingCountTxt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="0"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/followingCount2"
+        app:layout_constraintEnd_toEndOf="@+id/followingCount2"
+        app:layout_constraintStart_toStartOf="@+id/followingCount2"
+        tools:text="99" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/closeFragFAB"
         android:layout_width="wrap_content"
@@ -25,10 +72,11 @@
         android:id="@+id/fragmentContainerView4"
         android:name="com.example.runanalyser.fragments.GameRCFragment"
         android:layout_width="0dp"
-        android:layout_height="650dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileBtn2" />
 
     <ImageView
         android:id="@+id/profileBtn2"
