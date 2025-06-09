@@ -21,7 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class OtherUserProfileFragment extends Fragment {
 
-    private ImageView editUserBtn;
+    private ImageView userPfp;
     private TextView curName;
     private FloatingActionButton exitFab;
     private GameRCFragment myGamesFrag;
@@ -49,7 +49,7 @@ public class OtherUserProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Initialize views
-        editUserBtn = view.findViewById(R.id.profileBtn2);
+        userPfp = view.findViewById(R.id.profileBtn2);
         curName = view.findViewById(R.id.curusername2);
         exitFab = view.findViewById(R.id.closeFragFAB);
 
@@ -71,7 +71,7 @@ public class OtherUserProfileFragment extends Fragment {
 
         // Set profile picture
         if (user.pfpURI != null) {
-            editUserBtn.setImageURI(Uri.parse(user.pfpURI));
+            userPfp.setImageURI(Uri.parse(user.pfpURI));
         }
 
         // Setup games fragment

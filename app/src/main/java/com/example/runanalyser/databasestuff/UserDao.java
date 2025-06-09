@@ -28,7 +28,7 @@ public interface UserDao {
     User getUserByUsername(String username);
 
     @Query("SELECT * FROM users WHERE userId = :id")
-    User getUserByID(String id);
+    User getUserByID(int id);
 
     @Query("SELECT COUNT(*) AS game_item_count\n" +
             "FROM GAMES \n" +

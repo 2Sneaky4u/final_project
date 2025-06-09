@@ -24,7 +24,6 @@ import com.example.runanalyser.databasestuff.User;
 public class LoginFragment extends Fragment {
 
     private AppDatabase appDatabase;
-    private final User curUser = Globals.getCurUser();
 
 
     @Override
