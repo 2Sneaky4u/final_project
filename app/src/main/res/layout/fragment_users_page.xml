@@ -5,7 +5,22 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="#171D25">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/closeFragFAB2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:elevation="12dp"
+        android:rotation="180"
+        android:src="@android:drawable/ic_menu_revert"
+        android:visibility="gone"
+        app:backgroundTint="#85B5FF"
+        app:fabSize="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxImageSize="36dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/usersRecyclerView"

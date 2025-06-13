@@ -103,6 +103,7 @@ public class SearchNavigationActivity extends AppCompatActivity {
         System.out.println("---> clicked a user");
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragmentContainerView3, usersProfileFragment, "New User Profile");
+        transaction.addToBackStack(null);
         System.out.println("---> replaced transaction");
         transaction.commit();
         System.out.println("---> commited transaction");

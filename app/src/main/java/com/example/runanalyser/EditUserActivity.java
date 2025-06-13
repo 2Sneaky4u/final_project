@@ -50,6 +50,7 @@ public class EditUserActivity extends AppCompatActivity {
     private TextView PasswordTxt;
     private TextView DescriptionTxt;
     private TextView PhoneTxt;
+    private TextView title;
 
     private ArrayList<View> visibilityViews = new ArrayList<>();
     private TextInputEditText editUsername;
@@ -183,6 +184,8 @@ public class EditUserActivity extends AppCompatActivity {
         PhoneTxt = findViewById(R.id.myPhoneView);
         exitbtn = findViewById(R.id.leavebtn);
         delUser = findViewById(R.id.deleteUserFAB);
+        title = findViewById(R.id.textView);
+        title.setText(getIntent().getStringExtra("Title") + " your user");
 
         visibilityViews.add(findViewById(R.id.textInputLayout));
         visibilityViews.add(findViewById(R.id.textInputLayout2));
@@ -220,41 +223,59 @@ public class EditUserActivity extends AppCompatActivity {
                 String password = editPassword.getText().toString();
                 String phone = editPhone.getText().toString();
                 String desc = editDesc.getText().toString();
+
                 new Thread(() -> {
+                    boolean saveSuccessful = true;
+
                     if (!username.isEmpty()) {
                         if (validateUsernameInput(username)) {
                             User checkuser = appDatabase.userDao().getUserByUsername(username);
-                            if (checkuser != null) {
+                            if (checkuser != null && !checkuser.username.equals(Globals.getCurUser().username)) {
                                 showToast("Username already exists");
-                            } else Globals.getCurUser().username = username;
+                                saveSuccessful = false;
+                            } else {
+                                Globals.getCurUser().username = username;
+                            }
+                        } else {
+                            saveSuccessful = false;
                         }
                     }
+
                     if (!password.isEmpty()) {
-                        if (validatePasswordInput(password))
+                        if (validatePasswordInput(password)) {
                             Globals.getCurUser().password = password;
+                        } else {
+                            saveSuccessful = false;
+                        }
                     }
+
                     if (!phone.isEmpty()) {
                         Globals.getCurUser().phonenumber = phone;
                     }
+
                     if (!desc.isEmpty()) {
                         Globals.getCurUser().description = desc;
                     }
 
-                    userDao.editUser(Globals.getCurUser());
-                }).start();
+                    if (saveSuccessful) {
+                        userDao.editUser(Globals.getCurUser());
 
-                for (View layout : visibilityViews) {
-                    layout.setVisibility(View.INVISIBLE);
-                }
-                editUsername.setVisibility(View.INVISIBLE);
-                editPassword.setVisibility(View.INVISIBLE);
-                editPhone.setVisibility(View.INVISIBLE);
-                editDesc.setVisibility(View.INVISIBLE);
-                saveEdits.setVisibility(View.INVISIBLE);
-                previewProfilePic.setClickable(false);
-                exitbtn.setVisibility(View.VISIBLE);
-                editUser.setVisibility(View.VISIBLE);
-                refreshUserInfo();
+                        runOnUiThread(() -> {
+                            for (View layout : visibilityViews) {
+                                layout.setVisibility(View.INVISIBLE);
+                            }
+                            editUsername.setVisibility(View.INVISIBLE);
+                            editPassword.setVisibility(View.INVISIBLE);
+                            editPhone.setVisibility(View.INVISIBLE);
+                            editDesc.setVisibility(View.INVISIBLE);
+                            saveEdits.setVisibility(View.INVISIBLE);
+                            previewProfilePic.setClickable(false);
+                            exitbtn.setVisibility(View.VISIBLE);
+                            editUser.setVisibility(View.VISIBLE);
+                            refreshUserInfo();
+                        });
+                    }
+                }).start();
             }
         });
 
@@ -296,7 +317,7 @@ public class EditUserActivity extends AppCompatActivity {
         delUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final CharSequence[] options = {"Are you sure you want to delete your user?\n This cannot be undone.", "Delete", "Cancel"};
+                final CharSequence[] options = {"Are you sure you want to delete your user?\nThis cannot be undone.", "Delete", "Cancel"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(EditUserActivity.this);
                 builder.setTitle("Delete User?");
                 builder.setItems(options, new DialogInterface.OnClickListener() {

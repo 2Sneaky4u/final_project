@@ -2,7 +2,6 @@ package com.example.runanalyser.databasestuff;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,38 +80,46 @@ public class UserAdapter extends ListAdapter<User, UserAdapter.UserViewHolder> {
         }).start();
         if (user.pfpURI != null) holder.pfpView.setImageURI(Uri.parse(user.pfpURI));
 
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("--> Entered edit thread");
-                boolean isFollowing = followerDao.getFollowItemByIds(Globals.getCurUser().id, user.id) != null;
-                boolean isFollowed = followerDao.getFollowItemByIds(user.id, Globals.getCurUser().id) != null;
-                System.out.println("--> got follow info");
-                ((Activity) context).runOnUiThread(() -> {
-                    System.out.println("--> entered UI thread");
-                    updateButtonStates(user,holder,isFollowing,isFollowed);
-                    System.out.println("--> Finished UI thread");
-                });
-            }
-        };
+        if (user.id != Globals.getCurUser().id) {
 
-        AppDatabase.dtbWriteExecutor.execute(runnable);
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println("--> Entered edit thread");
+                    boolean isFollowing = followerDao.getFollowItemByIds(Globals.getCurUser().id, user.id) != null;
+                    boolean isFollowed = followerDao.getFollowItemByIds(user.id, Globals.getCurUser().id) != null;
+                    System.out.println("--> got follow info");
+                    ((Activity) context).runOnUiThread(() -> {
+                        System.out.println("--> entered UI thread");
+                        updateButtonStates(user, holder, isFollowing, isFollowed);
+                        System.out.println("--> Finished UI thread");
+                    });
+                }
+            };
 
-
-
-        holder.followbtn.setOnClickListener(view ->AppDatabase.dtbWriteExecutor.execute(() -> {
-            Follower follower = new Follower(Globals.getCurUser().id, user.id);
-            followerDao.insertFollower(follower);
-            System.out.println("--> added follow");
-            AppDatabase.dtbWriteExecutor.execute(runnable);
-        }));
-        holder.unfollowbtn.setOnClickListener(view ->AppDatabase.dtbWriteExecutor.execute(() -> {
-            Follower follower = followerDao.getFollowItemByIds(Globals.getCurUser().id, user.id);
-            followerDao.delFollower(follower);
-            System.out.println("--> added follow");
             AppDatabase.dtbWriteExecutor.execute(runnable);
 
-        }));
+            holder.followbtn.setOnClickListener(view -> AppDatabase.dtbWriteExecutor.execute(() -> {
+                Follower follower = new Follower(Globals.getCurUser().id, user.id);
+                followerDao.insertFollower(follower);
+                System.out.println("--> added follow");
+                AppDatabase.dtbWriteExecutor.execute(runnable);
+            }));
+            holder.unfollowbtn.setOnClickListener(view -> AppDatabase.dtbWriteExecutor.execute(() -> {
+                Follower follower = followerDao.getFollowItemByIds(Globals.getCurUser().id, user.id);
+                followerDao.delFollower(follower);
+                System.out.println("--> added follow");
+                AppDatabase.dtbWriteExecutor.execute(runnable);
+
+            }));
+        } else {
+            holder.followbtn.setClickable(false);
+            holder.followbtn.setVisibility(View.INVISIBLE);
+            holder.followbtn.setActivated(false);
+            holder.unfollowbtn.setClickable(false);
+            holder.unfollowbtn.setVisibility(View.INVISIBLE);
+            holder.unfollowbtn.setActivated(false);
+        }
     }
 
     private void updateButtonStates(User user, UserAdapter.UserViewHolder holder, boolean isFollowing, boolean isFollowed) {
@@ -123,9 +130,9 @@ public class UserAdapter extends ListAdapter<User, UserAdapter.UserViewHolder> {
         holder.unfollowbtn.setClickable(isFollowing);
 
         if (isFollowing && isFollowed) {
-            holder.nameView.setText(user.username + " * Friend");
+            holder.nameView.setText(user.username + " ᐧ Friend");
         } else if (isFollowing) {
-            holder.nameView.setText(user.username + " * Following");
+            holder.nameView.setText(user.username + " ᐧ Following");
         } else {
             holder.nameView.setText(user.username);
         }

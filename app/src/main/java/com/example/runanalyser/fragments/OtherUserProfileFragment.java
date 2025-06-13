@@ -68,8 +68,29 @@ public class OtherUserProfileFragment extends Fragment {
         exitFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SearchNavigationActivity nav = (SearchNavigationActivity) getActivity();
-                nav.switchFragToUserpage();
+                getParentFragmentManager().popBackStack();
+            }
+        });
+
+        followers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FollowPageFragment followersFragment = FollowPageFragment.newInstance(true, user.id);
+                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragmentContainerView4, followersFragment, "Your followers");
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+        following.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FollowPageFragment followingFragment = FollowPageFragment.newInstance(false, user.id);
+
+                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragmentContainerView4, followingFragment, "Your following");
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
     }

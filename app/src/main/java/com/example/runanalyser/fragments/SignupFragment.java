@@ -55,6 +55,7 @@ public class SignupFragment extends Fragment {
                             showToast("Signup successfully");
                             Globals.setCurUser(newUser);
                             Intent intent = new Intent(getActivity(), EditUserActivity.class);
+                            intent.putExtra("Title", "Create");
                             startActivity(intent);
                         }
                     });

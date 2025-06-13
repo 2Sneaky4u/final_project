@@ -20,25 +20,11 @@ public interface FollowerDao {
     @Delete
     void delFollower(Follower follower);
 
-    @Query("SELECT *\n" +
-            "FROM Users\n" +
-            "JOIN Followers ON users.userId = followers.followingId\n" +
-            "WHERE followers.followerId = :id\n" +
-            "ORDER BY users.username ASC")
-    LiveData<List<User>> getFollowingListById(int id);
-
     @Query("SELECT count(*)\n" +
             "FROM Users\n" +
             "JOIN Followers ON Users.userId = Followers.followingId\n" +
             "WHERE Followers.followerId = :id")
     int countFollowing(int id);
-
-    @Query("SELECT *\n" +
-            "FROM Users\n" +
-            "JOIN Followers ON users.userId = followers.followerId\n" +
-            "WHERE followers.followingId = :id\n" +
-            "ORDER BY users.username ASC")
-    LiveData<List<User>> getFollowerListById(int id);
 
     @Query("SELECT count(*)\n" +
             "FROM Users\n" +
@@ -51,5 +37,11 @@ public interface FollowerDao {
             "WHERE followerId = :followerUserId \n" +
             "AND followingId = :targetUserId")
     Follower getFollowItemByIds(int followerUserId, int targetUserId);
+
+    @Query("SELECT * FROM users WHERE userId IN (SELECT followingId FROM followers WHERE followerId = :id) AND username LIKE '%' || :query || '%'")
+    LiveData<List<User>> searchFollowingListById(int id, String query);
+
+    @Query("SELECT * FROM users WHERE userId IN (SELECT followerId FROM followers WHERE followingId = :id) AND username LIKE '%' || :query || '%'")
+    LiveData<List<User>> searchFollowerListById(int id, String query);
 
 }

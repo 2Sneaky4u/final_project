@@ -16,8 +16,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.runanalyser.databasestuff.AppDatabase;
+import com.example.runanalyser.fragments.FollowPageFragment;
 import com.example.runanalyser.fragments.GameRCFragment;
-import com.example.runanalyser.fragments.UsersPageFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
@@ -32,6 +32,9 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextView followers;
     private TextView following;
     private final GameRCFragment myGamesFrag = new GameRCFragment(Globals.getCurUser());
+    FollowPageFragment followersFragment = FollowPageFragment.newInstance(true, Globals.getCurUser().id);
+    FollowPageFragment followingFragment = FollowPageFragment.newInstance(false, Globals.getCurUser().id);
+
     private final FragmentManager fragmentManager = getSupportFragmentManager();
 
 
@@ -74,6 +77,7 @@ public class UserProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserProfileActivity.this, EditUserActivity.class);
+                intent.putExtra("Title", "Edit");
                 startActivity(intent);
             }
         });
@@ -94,23 +98,27 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-//        followers.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(UserProfileActivity.this, SearchNavigationActivity.class);
-//                i.putExtra(Globals.NAV_OPENING, 1);
-//                startActivity(i);            }
-//        });
-//        following.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(UserProfileActivity.this, SearchNavigationActivity.class);
-//                i.putExtra(Globals.NAV_OPENING, 2);
-//                startActivity(i);
-//            }
-//        });
+        followers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.fragmentContainerView2, followersFragment, "Your followers");
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+        following.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.replace(R.id.fragmentContainerView2, followingFragment, "Your following");
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
     }
+
     public void switchFragToGamesPage() {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.fragmentContainerView2, myGamesFrag, "Your games");

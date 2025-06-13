@@ -1,5 +1,6 @@
 package com.example.runanalyser.fragments;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,6 +52,8 @@ public class GameRCFragment extends Fragment {
     private final MediatorLiveData<List<Game>> gamesLiveData = new MediatorLiveData<>();
     private LiveData<List<Game>> currentGamesData;
     private User user;
+    private Activity activity;
+
 
     public GameRCFragment() {
         this.user = Globals.getCurUser();
@@ -67,10 +70,11 @@ public class GameRCFragment extends Fragment {
         AppDatabase dataBase = AppDatabase.getDatabase(getActivity());
         GameDao gameDao = dataBase.gameDao();
 
+        activity = requireActivity();
 
         RecyclerView gameRc;
         gameRc = view.findViewById(R.id.gamesRecyclerView);
-        gameRc.setLayoutManager(new LinearLayoutManager(getActivity()));
+        gameRc.setLayoutManager(new LinearLayoutManager(activity));
         gameRc.setAdapter(gameAdapter);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
             @Override
@@ -87,7 +91,7 @@ public class GameRCFragment extends Fragment {
                             List<Game> gameList = gameAdapter.getCurrentList();
                             Game destGame = gameList.get(viewHolder.getAdapterPosition());
                             final CharSequence[] options = {"Are you sure you want to delete this game?\nThis cannot be undone.", "Delete", "Cancel"};
-                            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                             builder.setTitle("Delete Game?");
                             builder.setItems(options, new DialogInterface.OnClickListener() {
                                 @Override
@@ -98,11 +102,12 @@ public class GameRCFragment extends Fragment {
                                         });
                                     } else if (options[which].equals("Cancel")) {
                                         dialog.dismiss();
+                                        gameAdapter.notifyDataSetChanged();
                                     } else if (which == 1) {
                                     }
                                 }
                             });
-                            getActivity().runOnUiThread(()->builder.show());
+                            activity.runOnUiThread(()->builder.show());
                         }
                     }
                 });
@@ -155,7 +160,7 @@ public class GameRCFragment extends Fragment {
         TextView gamecount = view.findViewById(R.id.gameCountTxt);
         new Thread(()->{
             int count = gameDao.countConnectedGamesToUserId(user.id);
-            getActivity().runOnUiThread(()-> gamecount.setText(String.valueOf(count)));
+            activity.runOnUiThread(()-> gamecount.setText(String.valueOf(count)));
         }).start();
 
         return view;
